@@ -1,6 +1,18 @@
+<md-toolbar color="primary">
+  <span>DLTDOJO</span>
+  <span class="fill-remaining-space"></span>
+  <span>CERT</span>
+</md-toolbar>
+<md-card>
 <h1>
-  {{title}}
+  熵場證 DLTDOJO-CERT
 </h1>
 <p>{{date | date:'yyyy-MM-dd HH:mm:ss'}}</p>
-<button md-raised-button>Material Raised button</button>
-<app-bitcore></app-bitcore>
+<button md-raised-button>Create New Certificate</button>
+</md-card>
+<md-card>
+    <app-bitcore></app-bitcore>
+</md-card>
+<md-card>
+    <app-ethwallet></app-ethwallet>
+</md-card>
