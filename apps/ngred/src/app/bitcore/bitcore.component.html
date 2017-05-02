@@ -2,16 +2,17 @@
 <h3>
   bitcore-lib works!
 </h3>
-<p class="break-me">
-  bitcoin address = {{address}}
-</p>
-<p class="break-me">
-  key = {{key}}
-</p>
+<p class="break-me">issue address = {{address}}</p>
+<p class="break-me">issue key = {{key}}</p>
+<p class="break-me">revoke address = {{address}}</p>
+<p class="break-me">revoke key = {{revokeKey}}</p>
 <p>
     random = {{ran}}
 </p>
 <p>
     BIP32 12-word seed = {{seed}}
 </p>
+<h3>certificateAdminJson</h3>
+<button md-raised-button (click)="ckDownload()">Download CertificateAdminFile</button>
+<pre>{{certificateAdminJson|json}}</pre>
 </md-card>

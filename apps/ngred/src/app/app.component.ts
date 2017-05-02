@@ -10,4 +10,6 @@ export class AppComponent {
   ngOnInit() {
     this.date = new Date();
   }
+
+ 
 }
