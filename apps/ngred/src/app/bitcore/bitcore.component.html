@@ -11,8 +11,10 @@
 </p>
 <p>
     BIP32 12-word seed = {{seed}}
+    <br/>
+    localstorage seed = {{localSeed}}
 </p>
 <h3>certificateAdminJson</h3>
-<button md-raised-button (click)="ckDownload()">Download CertificateAdminFile</button>
+<button md-raised-button (click)="ckDownload()"><md-icon>link</md-icon> Download CertificateAdminFile</button>
 <pre>{{certificateAdminJson|json}}</pre>
 </md-card>

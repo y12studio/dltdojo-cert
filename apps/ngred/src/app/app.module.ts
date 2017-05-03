@@ -1,4 +1,6 @@
 import { BrowserModule } from '@angular/platform-browser';
+// https://github.com/PillowPillow/ng2-webstorage
+import {Ng2Webstorage} from 'ngx-webstorage';
 import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
 import { NgModule } from '@angular/core';
 import { FormsModule } from '@angular/forms';
@@ -30,6 +32,7 @@ const appRoutes: Routes = [
   ],
   imports: [
     BrowserModule,
+    Ng2Webstorage,
     BrowserAnimationsModule,
     FormsModule,
     RouterModule.forRoot(appRoutes),

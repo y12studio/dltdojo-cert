@@ -1,4 +1,6 @@
 import { Component, OnInit } from '@angular/core';
+// https://github.com/PillowPillow/ng2-webstorage
+import {LocalStorageService} from 'ngx-webstorage';
 import * as _ from 'lodash';
 declare var DltdojoCertLib: any;
 // https://github.com/bitpay/bitcore-lib
@@ -21,7 +23,8 @@ export class BitcoreComponent implements OnInit {
   ran = 10;
   seed= '';
   certificateAdminJson = {};
-  constructor() { }
+  localSeed = '';
+  constructor(private storage:LocalStorageService) { }
 
   ngOnInit() {
     var pkey = new PrivateKey();
@@ -33,6 +36,8 @@ export class BitcoreComponent implements OnInit {
     this.ran = _.random(12, 86);
     this.seed = lightwallet.keystore.generateRandomSeed();
     this.certificateAdminJson = {seed:this.seed, issueKey: this.key, issueAddress:this.address, revokeAddress: this.raddress,revokeKey: this.revokeKey}
+    this.localSeed = this.storage.retrieve('seed')
+    this.storage.store('seed', this.seed);
   }
 
   ckDownload(event) {
