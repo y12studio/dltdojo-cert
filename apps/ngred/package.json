@@ -4,11 +4,12 @@
   "license": "MIT",
   "scripts": {
     "ng": "ng",
-    "start": "ng serve --host 0.0.0.0",
+    "start": "ng serve",
     "build": "ng build",
     "test": "ng test",
     "lint": "ng lint",
     "dltdojo:bundle": "browserify DltdojoCertLib.js -s DltdojoCertLib -o src/dltdojocert.lib.js",
+    "dltdojo:serve": "ng serve --host=192.168.2.73",
     "dltdojo:build": "ng build -prod && html-inline dist/index.html > dist/app.html",
     "e2e": "ng e2e"
   },

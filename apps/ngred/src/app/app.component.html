@@ -28,17 +28,15 @@
       <button md-icon-button (click)="sidenav.open()">
         <md-icon>menu</md-icon>
       </button>
-
       <span>DLTDOJO</span>
       <span class="fill-remaining-space"></span>
       <span>CERT</span>
     </md-toolbar>
     <md-card>
-      <h1>
-      熵場證 DLTDOJO-CERT
-    </h1>
+      <h2>
+        熵場證 DLTDOJO-CERT
+      </h2>
       <p>{{date | date:'yyyy-MM-dd HH:mm:ss'}}</p>
-     
     </md-card>
     <router-outlet></router-outlet>
   </div>

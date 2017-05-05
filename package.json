@@ -1,0 +1,17 @@
+{
+  "name": "dltdojo-cert",
+  "description": "https://github.com/y12studio/dltdojo-cert",
+  "devDependencies": {
+    "lerna": "^2.0.0-rc.4"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/y12studio/dltdojo-cert.git"
+  },
+  "keywords": [
+    "blockchain",
+    "dlt"
+  ],
+  "author": "y12studio@gmail.com",
+  "license": "Apache-2.0"
+}
