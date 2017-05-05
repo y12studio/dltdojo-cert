@@ -28,5 +28,8 @@
     "chai": "^3.5.0",
     "mocha": "^3.3.0",
     "standard": "^10.0.2"
+  },
+  "standard": {
+    "globals": [ "describe", "it" ]
   }
 }
