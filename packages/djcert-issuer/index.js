@@ -1,17 +1,19 @@
 'use strict'
 
 var jsonld = require('jsonld')
-var _ = require('lodash')
 var utf8 = require('utf8')
 var bitcoreLib = require('bitcore-lib')
 var Hash = bitcoreLib.crypto.Hash
 
 function BlockcertsLib () {
-  this.foo = 'foo'
 }
 
 BlockcertsLib.prototype.sha256 = function (str) {
   return Hash.sha256(Buffer.from(str)).toString('hex')
+}
+
+BlockcertsLib.prototype.hash = function (normalized) {
+  return this.sha256(utf8.encode(normalized))
 }
 
 // support blockcerts.org schema >= 2.0
@@ -38,8 +40,7 @@ BlockcertsLib.prototype.computeHash = function (cert) {
         reject(reason)
       }
       resolve({
-        // normalized: normalized,
-        hash: this.sha256(utf8.encode(normalized))
+        normalized: normalized
       })
     })
   })
