@@ -22,7 +22,8 @@
   "dependencies": {
     "bitcore-lib": "^0.14.0",
     "jsonld": "^0.4.12",
-    "lodash": "^4.17.4"
+    "lodash": "^4.17.4",
+    "utf8": "^2.1.2"
   },
   "devDependencies": {
     "chai": "^3.5.0",
@@ -30,6 +31,9 @@
     "standard": "^10.0.2"
   },
   "standard": {
-    "globals": [ "describe", "it" ]
+    "globals": [
+      "describe",
+      "it"
+    ]
   }
 }
