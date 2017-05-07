@@ -1,0 +1,1 @@
+Verification Process - Blockcerts : The Open Standard for Blockchain Certificates  http://www.blockcerts.org/guide/verification-process.html
