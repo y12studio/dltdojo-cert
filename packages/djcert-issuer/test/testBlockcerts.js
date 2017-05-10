@@ -3,7 +3,6 @@ var BlockcertsLib = require('../blockcerts')
 var chai = require('chai')
 var assert = chai.assert
 var fs = require('fs')
-var MerkleTools = require('merkle-tools')
 const HASH_VALID_2 = '7d5ee19584a27a9bf7d558e0128a27e18f8d11ace3c99cd72423c9db6cbc50d7'
 
 function getPrepareCert (path) {
@@ -24,7 +23,7 @@ describe('djcert lib test', function () {
     var bcerts = new BlockcertsLib()
     var id = bcerts.getUuid()
     assert.isString(id)
-    assert.isTrue(id.indexOf("urn:uuid") == 0)
+    assert.isTrue(id.indexOf('urn:uuid') === 0)
   })
 
   it('should be Undefined with signature removed', function () {
@@ -42,7 +41,7 @@ describe('djcert lib test', function () {
     })
   })
 
-    it('should be equal with targetHash', function () {
+  it('should be equal with targetHash', function () {
     var bcerts = new BlockcertsLib()
     var prepareNormalizeResult = getPrepareCert('test/data/sample_cert-valid-2.0.json')
     return bcerts.computeHash(prepareNormalizeResult).then(data => {

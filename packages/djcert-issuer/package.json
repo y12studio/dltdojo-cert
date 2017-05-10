@@ -21,6 +21,7 @@
   "homepage": "https://github.com/y12studio/dltdojo-cert#readme",
   "dependencies": {
     "bitcore-lib": "^0.14.0",
+    "datauri": "^1.0.5",
     "jsonld": "^0.4.12",
     "lodash": "^4.17.4",
     "merkle-tools": "^1.3.2",
