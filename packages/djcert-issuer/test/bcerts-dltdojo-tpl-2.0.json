@@ -1,0 +1,55 @@
+{
+    "@context": ["https://openbadgespec.org/v2/context.json", "https://w3id.org/blockcerts/schema/2.0-alpha/context.json"],
+    "id": "",
+    "issuedOn": "",
+    "type": "Assertion",
+    "signature": {
+        "type": ["MerkleProof2017", "Extension"],
+        "proof": [],
+        "targetHash": "",
+        "merkleRoot": "",
+        "anchors": [{
+            "type": "BTCOpReturn",
+            "sourceId": ""
+        }]
+    },
+    "recipient": {
+        "type": "email",
+        "recipientProfile": {
+            "type": ["RecipientProfile", "Extension"],
+            "publicKey": "ecdsa-koblitz-pubkey:mtr98kany9G1XYNU74pRnfBQmaCg2FZLmc",
+            "name": "Arya Stark"
+        },
+        "identity": "aryaxyz@starkxyz.com",
+        "hashed": false
+    },
+    "verification": {
+        "type": ["MerkleProofVerification2017", "Extension"],
+        "creator": "ecdsa-koblitz-pubkey:msBCHdwaQ7N2ypBYupkp6uNxtr9Pg76imj"
+    },
+    "badge": {
+        "id": "",
+        "image": "issuer-dltdojo.png",
+        "type": "BadgeClass",
+        "issuer": {
+            "id": "https://dltdojo.org/blockcerts/2.0-alpha/issuerTestnet.json",
+            "image": "issuer-dltdojo.png",
+            "email": "y12studio@gmail.com",
+            "url": "https://dltdojo.org",
+            "type": "Profile",
+            "revocationList": "https://dltdojo.org/blockcerts/samples/2.0-alpha/revocationList.json",
+            "name": "DLTDOJO熵熱踢道場"
+        },
+        "signatureLines": [{
+            "jobTitle": "場長",
+            "type": ["SignatureLine", "Extension"],
+            "image": "issuer-dltdojo.png",
+            "name": "熵熱踢道場"
+        }],
+        "name": "DJBTC101",
+        "criteria": {
+            "narrative": "通過DLTDOJO BITCOIN 101測試"
+        },
+        "description": "熵熱踢道場DLTDOJO證明"
+    }
+}

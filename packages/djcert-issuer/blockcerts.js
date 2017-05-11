@@ -6,6 +6,7 @@ var Hash = bitcoreLib.crypto.Hash
 const uuidV1 = require('uuid/v1')
 var MerkleTools = require('merkle-tools')
 const Datauri = require('datauri').sync
+var moment = require('moment')
 
 function BlockcertsLib () {
 }
@@ -32,8 +33,18 @@ BlockcertsLib.prototype.tplBuilder = function (obj) {
   if (obj.id.indexOf('run:uuid') < 0) {
     obj.id = this.getUuid()
   }
-  this.imageToUri(obj)
-  this.imageToUri(obj.issuer)
+
+  if (obj.issuedOn.length === 0) {
+    obj.issuedOn = moment().format()
+  }
+
+  var badge = obj.badge
+  if (badge.id.indexOf('run:uuid') < 0) {
+    badge.id = this.getUuid()
+  }
+
+  this.imageToUri(badge)
+  this.imageToUri(badge.issuer)
   return obj
 }
 
