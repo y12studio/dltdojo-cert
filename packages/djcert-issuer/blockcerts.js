@@ -1,20 +1,23 @@
 'use strict'
-
 var jsonld = require('jsonld')
 var utf8 = require('utf8')
 var bitcoreLib = require('bitcore-lib')
 var Hash = bitcoreLib.crypto.Hash
 const uuidV1 = require('uuid/v1')
 var MerkleTools = require('merkle-tools')
+const Datauri = require('datauri').sync
 
-// const DATAURL_PNG_RED_50x50 = "data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAADIAAAAyCAYAAAAeP4ixAAAARUlEQVR42u3PQQ0AAAjEMM6/aMACT5IuM9B01f6/gICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgIBcGuAsY8/q7uoYAAAAAElFTkSuQmCC"
-// const DATAURL_PNG_BLUE_50x50 = "data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAADIAAAAyCAYAAAAeP4ixAAAARElEQVR42u3PQREAAAjDMOZfNGCBL5dWQVK9PyggICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgIJcGrl5jz5iDI7kAAAAASUVORK5CYII="
-// const DATAURL_PNG_GREEN_50x50 = "data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAADIAAAAyCAYAAAAeP4ixAAAAQ0lEQVR42u3PQREAAAgDoK1/aM3g14MGNJnJAxURERERERERERERERERERERERERERERERERERERERERERERERERuVh8kGPPziaQ7QAAAABJRU5ErkJggg=="
-
-function BlockcertsLib () {}
+function BlockcertsLib () {
+}
 
 BlockcertsLib.prototype.sha256 = function (str) {
   return Hash.sha256(Buffer.from(str)).toString('hex')
+}
+
+BlockcertsLib.prototype.imageToUri = function (parent) {
+  if (parent.image.indexOf('data:image') < 0 && parent.image.indexOf('http') < 0) {
+    parent.image = Datauri(parent.image)
+  }
 }
 
 BlockcertsLib.prototype.hash = function (normalized) {
@@ -23,6 +26,15 @@ BlockcertsLib.prototype.hash = function (normalized) {
 
 BlockcertsLib.prototype.getUuid = function () {
   return 'urn:uuid:' + uuidV1()
+}
+
+BlockcertsLib.prototype.tplBuilder = function (obj) {
+  if (obj.id.indexOf('run:uuid') < 0) {
+    obj.id = this.getUuid()
+  }
+  this.imageToUri(obj)
+  this.imageToUri(obj.issuer)
+  return obj
 }
 
 BlockcertsLib.prototype.validateProof = function (signature) {

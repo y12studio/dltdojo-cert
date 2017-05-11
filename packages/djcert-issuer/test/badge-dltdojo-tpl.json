@@ -1,0 +1,25 @@
+{
+    "id": "",
+    "image": "issuer-dltdojo.png",
+    "type": "BadgeClass",
+    "issuer": {
+        "id": "https://dltdojo.org/blockcerts/2.0-alpha/issuerTestnet.json",
+        "image": "issuer-dltdojo.png",
+        "email": "y12studio@gmail.com",
+        "url": "https://dltdojo.org",
+        "type": "Profile",
+        "revocationList": "https://dltdojo.org/blockcerts/samples/2.0-alpha/revocationList.json",
+        "name": "DLTDOJO熵熱踢道場"
+    },
+    "signatureLines": [{
+        "jobTitle": "場長",
+        "type": ["SignatureLine", "Extension"],
+        "image": "issuer-dltdojo.png",
+        "name": "熵熱踢道場"
+    }],
+    "name": "DJBTC101",
+    "criteria": {
+        "narrative": "通過DLTDOJO BITCOIN 101測試"
+    },
+    "description": "熵熱踢道場DLTDOJO證明"
+}

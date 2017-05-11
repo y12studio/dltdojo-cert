@@ -1,9 +1,0 @@
-{
-    "id": "https://dltdojo.org/blockcerts/2.0-alpha/issuerTestnet.json",
-    "imagePath": "issuer-dltdojo.png",
-    "email": "y12studio@gmail.com",
-    "url": "https://dltdojo.org",
-    "type": "Profile",
-    "revocationList": "https://dltdojo.org/blockcerts/samples/2.0-alpha/revocationList.json",
-    "name": "DLTDOJO"
-}
