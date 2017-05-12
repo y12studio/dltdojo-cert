@@ -7,9 +7,9 @@ const uuidV1 = require('uuid/v1')
 var MerkleTools = require('merkle-tools')
 const Datauri = require('datauri').sync
 var moment = require('moment')
+var _ = require('lodash')
 
-function BlockcertsLib () {
-}
+function BlockcertsLib () {}
 
 BlockcertsLib.prototype.sha256 = function (str) {
   return Hash.sha256(Buffer.from(str)).toString('hex')
@@ -45,7 +45,37 @@ BlockcertsLib.prototype.tplBuilder = function (obj) {
 
   this.imageToUri(badge)
   this.imageToUri(badge.issuer)
-  return obj
+
+  var r = []
+  var parr = []
+
+  obj.recipientList.forEach(e => {
+    var recipientDoc = _.cloneDeep(obj)
+    delete recipientDoc.recipientList
+    recipientDoc.id = this.getUuid()
+    recipientDoc.recipient.recipientProfile.name = e.name
+    recipientDoc.recipient.recipientProfile.publicKey = e.publicKey
+    recipientDoc.recipient.identity = e.identity
+    parr.push(this.computeHash(BlockcertsLib.PrepareNormalize(recipientDoc)))
+    r.push(recipientDoc)
+  })
+
+  return Promise.all(parr).then(values => {
+    var merkleTools = new MerkleTools()
+    values.forEach((e, i, a) => {
+      r[i].signature.targetHash = e.hash
+      merkleTools.addLeaf(e.hash)
+    })
+    merkleTools.makeTree()
+    var merkleRoot = merkleTools.getMerkleRoot().toString('hex')
+    r.forEach((e, i, a) => {
+      var sig = r[i].signature
+      sig.proof = merkleTools.getProof(i)
+      sig.merkleRoot = merkleRoot
+    })
+    merkleTools.resetTree()
+    return r
+  })
 }
 
 BlockcertsLib.prototype.validateProof = function (signature) {
@@ -60,6 +90,7 @@ BlockcertsLib.prototype.validateProof = function (signature) {
 // https://github.com/blockchain-certificates/cert-verifier-js
 
 BlockcertsLib.prototype.computeHash = function (cert) {
+  var self = this
   return new Promise((resolve, reject) => {
     jsonld.normalize(cert, {
       algorithm: 'URDNA2015',
@@ -80,13 +111,15 @@ BlockcertsLib.prototype.computeHash = function (cert) {
         reject(reason)
       }
       resolve({
-        normalized: normalized
+        normalized: normalized,
+        hash: self.hash(normalized)
       })
     })
   })
 }
 
-BlockcertsLib.PrepareNormalize = function (cert) {
+BlockcertsLib.PrepareNormalize = function (certRaw) {
+  var cert = _.cloneDeep(certRaw)
   var expandContext = cert['@context']
   if (!expandContext.find(x => x.name === '@vocab')) {
     expandContext.push({

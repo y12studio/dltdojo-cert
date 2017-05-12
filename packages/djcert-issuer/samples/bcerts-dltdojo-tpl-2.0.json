@@ -13,6 +13,11 @@
             "sourceId": ""
         }]
     },
+    "recipientList":[
+        {"name":"alice dltdojo test", "publicKey":"ecdsa-koblitz-pubkey:mtr90kany9G1XYNU74pRnfBQmaCg2FZLmc", "identity":"alice@dltdojo.org"},
+        {"name":"bob dltdojo test", "publicKey":"ecdsa-koblitz-pubkey:mtr981any9G1XYNU74pRnfBQmaCg2FZLmc", "identity":"bob@dltdojo.org"},
+        {"name":"charlie dltdojo test", "publicKey":"ecdsa-koblitz-pubkey:mtr92kany9G1XYNU74pRnfBQmaCg2FZLmc", "identity":"charlie@dltdojo.org"}
+    ],
     "recipient": {
         "type": "email",
         "recipientProfile": {
@@ -50,6 +55,6 @@
         "criteria": {
             "narrative": "通過DLTDOJO BITCOIN 101測試"
         },
-        "description": "熵熱踢道場DLTDOJO證明"
+        "description": "DJBTC101 熵熱踢道場DLTDOJO證明"
     }
 }

@@ -45,6 +45,7 @@ describe('djcert lib test', function () {
     var bcerts = new BlockcertsLib()
     var prepareNormalizeResult = getPrepareCert('test/data/sample_cert-valid-2.0.json')
     return bcerts.computeHash(prepareNormalizeResult).then(data => {
+      assert.equal(data.hash, HASH_VALID_2)
       assert.equal(bcerts.hash(data.normalized), HASH_VALID_2)
     })
   })

@@ -1,5 +1,0 @@
-var BlockcertsLib = require('../blockcerts')
-var fs = require('fs')
-var bcerts = new BlockcertsLib()
-var r = bcerts.tplBuilder(JSON.parse(fs.readFileSync('bcerts-dltdojo-tpl-2.0.json', 'utf8')))
-fs.writeFileSync('bcerts-dltdojo-2.0.json', JSON.stringify(r, null, 2))
