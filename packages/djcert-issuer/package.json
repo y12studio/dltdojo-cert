@@ -21,6 +21,7 @@
   "homepage": "https://github.com/y12studio/dltdojo-cert#readme",
   "dependencies": {
     "bitcore-lib": "^0.14.0",
+    "bitcore-mnemonic": "^1.2.5",
     "blockchain-anchor": "^1.5.3",
     "datauri": "^1.0.5",
     "eth-lightwallet": "^2.5.4",

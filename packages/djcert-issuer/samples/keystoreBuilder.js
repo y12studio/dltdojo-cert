@@ -1,30 +1,35 @@
-var prompt = require('prompt');
+var prompt = require('prompt')
 // https://github.com/flatiron/prompt
-var ethlw = require("eth-lightwallet")
+var ethlw = require('eth-lightwallet')
 // https://github.com/ConsenSys/eth-lightwallet
+// https://github.com/bitpay/bitcore-mnemonic/blob/master/docs/index.md
+
 var keystore = ethlw.keystore
 var fs = require('fs')
 
-function createKeystore(password) {
-    var secretSeed = keystore.generateRandomSeed()
-    console.log(secretSeed)
-    keystore.createVault({
-        password: password,
-        seedPhrase: secretSeed
-    }, (err, ks) => {
+function createEthKeystore (password, secretSeed) {
+  keystore.createVault({
+    password: password,
+    seedPhrase: secretSeed
+  }, (err, ks) => {
+    if (err) throw err
         // console.log(err, ks)
-        if (ks) {
-            console.log(ks.serialize())
-            fs.writeFileSync('sample.key.json',ks.serialize())
-        }
+    ks.keyFromPassword(password, (err, pwDerivedKey) => {
+      if (err) throw err
+      ks.generateNewAddress(pwDerivedKey, 5)
+      fs.writeFileSync('sample-key.json', ks.serialize())
     })
+  })
 }
 
-prompt.start();
+prompt.start()
 
 // var password = prompt('Enter password for encryption', 'password')
 prompt.get(['password'], (err, result) => {
-    console.log('Enter password for encryption:');
-    console.log('  password: ' + result.password);
-    createKeystore(result.password)
-});
+  if (err) throw err
+  console.log('Enter password for encryption:')
+  console.log('  password:   ' + result.password)
+  var secretSeed = keystore.generateRandomSeed()
+  console.log('  secretSeed: ' + secretSeed)
+  createEthKeystore(result.password, secretSeed)
+})
