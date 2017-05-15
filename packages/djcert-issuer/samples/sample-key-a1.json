@@ -1,0 +1,27 @@
+{
+    "encSeed": {
+        "encStr": "YmhDkbwsJyj9EJCjaY+ufXqf8tl2fiWPx9a8zMn/bJ/4vpUbnBfu4wSCui7ugxyr+k+QGCWtPgRi6pOVXHYBpMFAZD6Qv10yPM/rppMUOwbOZnzh3PaoAH9WBj4dIx9tAMvsEQMeyACxwoYbk2X9HfxoMA0gN1PGU+x4kTbvjM+nK0y8QHGpUQ==",
+        "nonce": "t/J8QoW3KCCwVuwQsm63fsda/y37qpjO"
+    },
+    "ksData": {
+        "m/0'/0'/0'": {
+            "info": {
+                "curve": "secp256k1",
+                "purpose": "sign"
+            },
+            "encHdPathPriv": {
+                "encStr": "o5VTqaCOJ14/oJVt5jzKpv5beEqRMXp5PaJkCM2tb9yN0o47IeKAaBPlw1kcQ7QjQXmPLIcQrLxbQtaHKcNgM1bwVSEanFxFAH36tF7dFXMnJCrUQBBUCEbqjlShTUHSe11yQaKElnytYMbt1s5AQMw5lFQ6Dpy4BZLilBnCJA==",
+                "nonce": "WJlY7OJzOtOLpy/8MKSXWbeSz1t8z7Nt"
+            },
+            "hdIndex": 0,
+            "encPrivKeys": {},
+            "addresses": []
+        }
+    },
+    "encHdRootPriv": {
+        "encStr": "nBrAhVzdy9/ZhUsTEHWqJPMDph7UiEXBCpU9oslN3vFqrjyHE+lIvsyKJEPeFpNvYu1cu9dFidRDTBXpU3DrK53EgdfYbbXMgWa3cTxloF5JlhctouO25uJQEO0bffQJ4iUspYLViJmtavbc4I9T/FgvM0hoKDarLMZ8EYEBlg==",
+        "nonce": "S8a+CR7XZPx8+hZMr9G/RN5uDNSaqeNZ"
+    },
+    "salt": "3kgf6NyKrPCtTQAzeOFghjLmOiB1e1DU7Y79CjfZsok=",
+    "version": 2
+}

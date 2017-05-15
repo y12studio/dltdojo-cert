@@ -23,9 +23,9 @@
         "recipientProfile": {
             "type": ["RecipientProfile", "Extension"],
             "publicKey": "ecdsa-koblitz-pubkey:mtr98kany9G1XYNU74pRnfBQmaCg2FZLmc",
-            "name": "Arya Stark"
+            "name": "TPL DLTDOJO"
         },
-        "identity": "aryaxyz@starkxyz.com",
+        "identity": "tpl@dltdojo.org",
         "hashed": false
     },
     "verification": {
