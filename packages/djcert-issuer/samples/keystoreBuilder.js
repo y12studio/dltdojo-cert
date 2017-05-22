@@ -7,13 +7,19 @@ var ethlw = require('eth-lightwallet')
 var keystore = ethlw.keystore
 var fs = require('fs')
 
+/**
+ * create a eth-lightwallet keystore
+ *
+ * @param {any} password
+ * @param {any} secretSeed
+ */
 function createEthKeystore (password, secretSeed) {
   keystore.createVault({
     password: password,
     seedPhrase: secretSeed
   }, (err, ks) => {
     if (err) throw err
-        // console.log(err, ks)
+    // console.log(err, ks)
     ks.keyFromPassword(password, (err, pwDerivedKey) => {
       if (err) throw err
       ks.generateNewAddress(pwDerivedKey, 5)
@@ -22,14 +28,17 @@ function createEthKeystore (password, secretSeed) {
   })
 }
 
-prompt.start()
+function main () {
+  prompt.start()
 
-// var password = prompt('Enter password for encryption', 'password')
-prompt.get(['password'], (err, result) => {
-  if (err) throw err
-  console.log('Enter password for encryption:')
-  console.log('  password:   ' + result.password)
-  var secretSeed = keystore.generateRandomSeed()
-  console.log('  secretSeed: ' + secretSeed)
-  createEthKeystore(result.password, secretSeed)
-})
+  // var password = prompt('Enter password for encryption', 'password')
+  prompt.get(['password'], (err, result) => {
+    if (err) throw err
+    console.log('Enter password for encryption:')
+    console.log('  password:   ' + result.password)
+    var secretSeed = keystore.generateRandomSeed()
+    console.log('  secretSeed: ' + secretSeed)
+    createEthKeystore(result.password, secretSeed)
+  })
+}
+main()

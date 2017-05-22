@@ -1,0 +1,11 @@
+{
+    "@context": ["https://openbadgespec.org/v2/context.json", "https://w3id.org/blockcerts/schema/2.0-alpha/context.json"],
+    "id": "https://dltdojo.org/blockcerts/2.0-alpha/issuerTestnet.json",
+    "image": "issuer-dltdojo.png",
+    "email": "y12studio@gmail.com",
+    "url": "https://dltdojo.org",
+    "type": "Profile",
+    "publicKeys":[], 
+    "revocationList": "https://dltdojo.org/blockcerts/samples/2.0-alpha/revocationList.json",
+    "name": "DLTDOJO熵熱踢道場"
+}

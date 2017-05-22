@@ -37,7 +37,7 @@
         "image": "issuer-dltdojo.png",
         "type": "BadgeClass",
         "issuer": {
-            "id": "https://dltdojo.org/blockcerts/2.0-alpha/issuerTestnet.json",
+            "id": "https://dltdojo.org/blockcerts/samples/2.0-alpha/issuerTestnet.json",
             "image": "issuer-dltdojo.png",
             "email": "y12studio@gmail.com",
             "url": "https://dltdojo.org",
