@@ -1,6 +1,5 @@
 'use strict'
 var jsonld = require('jsonld')
-var utf8 = require('utf8')
 var bitcoreLib = require('bitcore-lib')
 var Hash = bitcoreLib.crypto.Hash
 const uuidV1 = require('uuid/v1')
@@ -8,21 +7,27 @@ var MerkleTools = require('merkle-tools')
 const Datauri = require('datauri').sync
 var moment = require('moment')
 var _ = require('lodash')
+var BlockchainAnchor = require('blockchain-anchor')
 
 function BlockcertsLib () {}
 
-BlockcertsLib.prototype.sha256 = function (str) {
-  return Hash.sha256(Buffer.from(str)).toString('hex')
+BlockcertsLib.prototype.sha256 = function (stringUtf8) {
+  return Hash.sha256(Buffer.from(stringUtf8, 'utf8')).toString('hex')
 }
 
+/**
+ * convert image filepath to datauri
+ *
+ * @param {any} parent
+ */
 BlockcertsLib.prototype.imageToUri = function (parent) {
   if (parent.image.indexOf('data:image') < 0 && parent.image.indexOf('http') < 0) {
     parent.image = Datauri(parent.image)
   }
 }
 
-BlockcertsLib.prototype.hash = function (normalized) {
-  return this.sha256(utf8.encode(normalized))
+BlockcertsLib.prototype.toKoblitzPubkey = function (address) {
+  return `ecdsa-koblitz-pubkey:${address}`
 }
 
 BlockcertsLib.prototype.getUuid = function () {
@@ -78,6 +83,28 @@ BlockcertsLib.prototype.tplBuilder = function (obj) {
   })
 }
 
+// anchoring data onto the Bitcoin blockchain
+// https://github.com/Tierion/blockchain-anchor
+BlockcertsLib.prototype.anchor = function (privateKeyWIF, hexData) {
+  var anchorOptions = {
+    useTestnet: true, // optional, defaults to false
+    blockchainServiceName: 'insightbitpay', // optional, defaults to 'Any'
+    feeSatoshi: 30000 // optional, defaults to 10000
+  }
+  var anchor = new BlockchainAnchor(privateKeyWIF, anchorOptions)
+  return new Promise((resolve, reject) => {
+    anchor.embed(hexData, function (err, transactionId, rawTransaction) {
+      if (err) {
+        reject(err)
+      } else {
+        // console.log('New transaction Id = ' + transactionId)
+        // console.log('Raw tx = ' + rawTransaction)
+        resolve(transactionId)
+      }
+    })
+  })
+}
+
 BlockcertsLib.prototype.validateProof = function (signature) {
   var proof = signature.proof
   var targetHash = signature.targetHash
@@ -88,7 +115,6 @@ BlockcertsLib.prototype.validateProof = function (signature) {
 
 // support blockcerts.org schema >= 2.0
 // https://github.com/blockchain-certificates/cert-verifier-js
-
 BlockcertsLib.prototype.computeHash = function (cert) {
   var self = this
   return new Promise((resolve, reject) => {
@@ -112,7 +138,7 @@ BlockcertsLib.prototype.computeHash = function (cert) {
       }
       resolve({
         normalized: normalized,
-        hash: self.hash(normalized)
+        hash: self.sha256(normalized)
       })
     })
   })
